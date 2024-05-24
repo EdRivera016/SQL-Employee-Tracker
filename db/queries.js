@@ -43,7 +43,7 @@ const updateEmployeeRole = async (employee_id, role_id) => {
 };
 
 module.exports = {
-    getDepartment,
+    getDepartments,
     getRoles,
     getEmployees,
     addDepartment,
