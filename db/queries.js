@@ -1,6 +1,6 @@
-const pool + require('./pool');
+const pool = require('./pool');
 
-const getDepartment = async () => {
+const getDepartments = async () => {
     const res = await pool.query('SELECT * FROM department');
     return res.rows;
 };
