@@ -9,6 +9,10 @@ const {
   addRole,
   addEmployee,
   updateEmployeeRole,
+  deleteEmployee,
+  deleteDepartment,
+  deleteRole,
+  getEmployeesByManager,
 } = require('./db/queries');
 
 const start = async () => {
@@ -17,14 +21,18 @@ const start = async () => {
     type: 'list',
     message: 'What would you like to do?',
     choices: [
-      'View all departments',
-      'View all roles',
-      'View all employees',
-      'Add a department',
-      'Add a role',
-      'Add an employee',
-      'Update an employee role',
-      'Exit',
+        'View all departments',
+        'Add a department',
+        'Delete a department',
+        'View all roles',
+        'Add a role',
+        'Delete a role',
+        'View all employees',
+        'Add an employee',
+        'Delete an employee',
+        'Update an employee role',
+        'View employees by manager',
+        'Exit',
     ],
   });
 
@@ -149,9 +157,44 @@ case 'Delete an Employee':
             name: 'employeeToDeleteId',
             type: 'list',
             message: 'Select the employee to delete:',
-            choices: employeesForDelete.map
-        }
-    ])
+            choices: employeesForDelete.map((emp) => ({
+                name: `${emp.first_name} ${emp.last_name}`,
+                value: emp.id,
+            })),
+        },
+    ]);
+    await deleteEmployee(employeeToDeleteId);
+    console.log('Deleted employee.');
+
+    const remainingEmployees = await getEmployees();
+    console.table(remainingEmployees);
+    break;
+
+    case 'Delete a department':
+        const departmentsForDelete = await getDepartments();
+        const { departmentToDeleteId } = await inquirer.prompt([
+            {
+                name: ' departmentToDeleteId',
+                type: 'list',
+                message: 'Select the department to delete:',
+                choices: departmentsForDelete.map((dept) => ({
+                    name: dept.name,
+                    value: dept.id,
+                })),
+            },
+        ]);
+        await deleteDepartment(departmentToDeleteId);
+        console.log('Deleted department.');
+
+        const updatedDepartments = await getDepartments();
+        console.table(updatedDepartments);
+        break;
+
+    case 'View Employees by manager':
+    const employessByManager = await getEmployeesByManager();
+    console.table(employeesByManager);
+    break;
+
 
     case 'Exit':
       process.exit();
