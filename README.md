@@ -6,6 +6,7 @@
   - [Table Of Contents](#table-of-contents)
   - [Description](#description)
   - [Link to Github](#link-to-github)
+  - [Screen Recording](#screen-recording)
   - [Screenshots](#screenshots)
   - [Technologies Used](#technologies-used)
   - [Installation](#installation)
@@ -19,8 +20,12 @@ Employee Tracker is a command-line application that allows users to manage depar
 ## Link to Github 
 `git@github.com:EdRivera016/SQL-Employee-Tracker.git`
 
-## Screenshots
+## Screen Recording
+https://drive.google.com/file/d/1NSvAcSMDaPnlDto4mRpko5zKJBniMXr-/view?usp=sharing
 
+## Screenshots
+![CLI screenshot](Employee-Tracker(1).png)
+![CLI  screenshot](Employee-Tracker(2).png)
 
 ## Technologies Used
 - Node.js 
